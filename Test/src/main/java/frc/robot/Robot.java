@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Spark;
@@ -45,11 +48,19 @@ public class Robot extends IterativeRobot {
 	public static final int RIGHT_BUTTON = 6;
   public static final int BACK_BUTTON = 7;
   
-	
+  public boolean isLimitSwitchUpPressed = true;
+  public boolean isLimitSwitchDownPressed = true;
+
+  DigitalInput limitSwitch;
+  
+  
+  double armUp = isLimitSwitchUpPressed ? 0 : RIGHT_TRIGGER;
+  double armDown = isLimitSwitchDownPressed ? 0 : RIGHT_TRIGGER;
+
 	SpeedControllerGroup LeftDrive, RightDrive;
 
   XboxController Xcon;
-
+  
 
 	Spark FrontRight, RearRight, FrontLeft, RearLeft, LilPump;
   
@@ -73,6 +84,7 @@ public class Robot extends IterativeRobot {
 			
     Xcon = new XboxController(0);
   
+    limitSwitch = new DigitalInput(1);
 	} 
 
   /**
@@ -135,7 +147,12 @@ public class Robot extends IterativeRobot {
       m_robotDrive.drivePolar(Xcon.getRawAxis(1), 
       Xcon.getRawAxis(0), 
       Xcon.getRawAxis(4));
-    	}	
+
+      while (limitSwitch.get()){
+        Timer.delay(10);
+      }
+    }
+    	
   }
   
   /**
@@ -146,3 +163,5 @@ public class Robot extends IterativeRobot {
   public void testPeriodic() {
   }
 }
+
+
