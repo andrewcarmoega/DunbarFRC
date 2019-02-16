@@ -127,11 +127,12 @@ public class Robot extends IterativeRobot {
    */
   @Override
   public void teleopPeriodic() {
-   
+    double currentForward = 0;
   	while (isOperatorControl() && isEnabled()) {
 
+      currentForward = currentForward + 0.01 * (Xcon.getRawAxis(LEFT_STICK_Y_AXIS) - currentForward);
+      currentForward = currentForward + 0.01 * (Xcon.getRawAxis(LEFT_STICK_X_AXIS) - currentForward);
       
-
       m_robotDrive.drivePolar(Xcon.getRawAxis(1), 
       Xcon.getRawAxis(0), 
       Xcon.getRawAxis(4));
