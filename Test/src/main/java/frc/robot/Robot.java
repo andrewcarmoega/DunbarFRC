@@ -132,6 +132,8 @@ public class Robot extends IterativeRobot {
 
       currentForward = currentForward + 0.01 * (Xcon.getRawAxis(LEFT_STICK_Y_AXIS) - currentForward);
       currentForward = currentForward + 0.01 * (Xcon.getRawAxis(LEFT_STICK_X_AXIS) - currentForward);
+      currentForward = currentForward + 0.04 * (Xcon.getRawAxis(RIGHT_STICK_Y_AXIS) - currentForward);
+      currentForward = currentForward + 0.04 * (Xcon.getRawAxis(RIGHT_STICK_X_AXIS) - currentForward);
       
       m_robotDrive.drivePolar(Xcon.getRawAxis(1), 
       Xcon.getRawAxis(0), 
