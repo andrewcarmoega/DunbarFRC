@@ -51,7 +51,7 @@ public class Robot extends IterativeRobot {
   XboxController Xcon;
 
 
-  Spark FrontRight, RearRight, FrontLeft, RearLeft, elevatorMotor, wenusMotor, shootingMotor;
+  Spark FrontRight, RearRight, FrontLeft, RearLeft, elevatorMotor, elbowMotor, shootingMotor;
   Servo rulerServo;
   private MecanumDrive m_robotDrive;
 
